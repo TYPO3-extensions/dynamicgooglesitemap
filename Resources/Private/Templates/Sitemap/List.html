@@ -1,0 +1,56 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+
+<f:flashMessages />
+<f:if condition="{nopid}">
+	<f:then>
+		{nopid_msg}
+	</f:then>
+	<f:else>
+		<script type="text/javascript">
+			window.onload = function () {
+				var selects = document.getElementsByTagName("select");
+				for(var i = 0; i < selects.length; i++) {
+					selects[i].onchange = function(){
+						this.form.submit();
+					}
+				}
+			}
+		</script>
+		<f:form action="list" name="list" enctype="post" >
+			<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.domain" htmlEscape="false" />
+			<f:form.select name="domain" options="{domains}" value="{domain}"/><br/><br/>
+		</f:form>
+		<table>
+			<tr>
+				<th>Titel</th>
+				<th>UID</th>
+				<th>Lang</th>
+				<th>
+					<f:link.action action="deleteAll">
+						<img src="./sysext/t3skin/icons/gfx/garbage.gif" width="16" height="16" title="Delete Sitemap Entry" alt="">
+					</f:link.action>
+					Delete All
+				</th>
+				<th>URL Parameters</th>
+				<th>URL</th>
+				<th>Priority</th>
+				<th>Last Changed</th>
+			</tr>
+			<f:render partial="Sitemap/page" arguments="{item: item}" />
+		</table>
+	</f:else>
+</f:if>
+</f:section>

@@ -1,0 +1,11 @@
+# Module configuration
+module.tx_dynamicgooglesitemap {
+	persistence {
+		storagePid = {$module.tx_dynamicgooglesitemap.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$module.tx_dynamicgooglesitemap.view.templateRootPath}
+		partialRootPath = {$module.tx_dynamicgooglesitemap.view.partialRootPath}
+		layoutRootPath = {$module.tx_dynamicgooglesitemap.view.layoutRootPath}
+	}
+}

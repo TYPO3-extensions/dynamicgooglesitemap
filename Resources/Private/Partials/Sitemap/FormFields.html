@@ -1,0 +1,20 @@
+<label for="forPage">
+	<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.for_page" />
+</label><br />
+	<f:form.textfield property="forPage" /><br />
+<label for="url">
+	<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.url" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="url" /><br />
+<label for="priority">
+	<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.priority" />
+</label><br />
+	<f:form.textfield property="priority" /><br />
+<label for="lastmod">
+	<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod" />
+</label><br />
+	<f:form.textfield property="lastmod"  value="{sitemap.lastmod->f:format.date()}" /><br />
+<label for="lastmodHash">
+	<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod_hash" />
+</label><br />
+	<f:form.textfield property="lastmodHash" /><br />

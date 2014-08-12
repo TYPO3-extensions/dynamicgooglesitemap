@@ -1,0 +1,66 @@
+<tr class="item">
+	<td class="title">
+		<f:for each="{item.level}" as="level">
+			<img src="./clear.gif" width="18" height="16" alt="">
+		</f:for>
+		<span title="{item.page.title}" class="t3-icon t3-icon-apps t3-icon-apps-pagetree c-recIcon {item.page.pageCssClass}">
+			<f:if condition="{item.page.hidden}">
+				<f:then><span class="t3-icon t3-icon-status t3-icon-status-overlay t3-icon-overlay-hidden t3-icon-overlay">&nbsp;</span></f:then>
+				<f:else>
+					<f:if condition="{item.page.feGroup} != 0">
+						<f:then>
+							<span class="t3-icon t3-icon-status t3-icon-status-overlay t3-icon-overlay-access-restricted t3-icon-overlay">&nbsp;</span>
+						</f:then>
+						<f:else>&nbsp;</f:else>
+					</f:if>
+				</f:else>
+			</f:if>
+		</span>
+		<span class="value">
+			{item.page.title}
+		</span>
+	</td>
+	<td class="uid">
+		{item.page.uid}
+	</td>
+	<f:if condition="{item.sitemaps}">
+		<f:for each="{item.sitemaps}" as="sitemap" iteration="i">
+			<f:if condition="{i.isFirst}">
+				<f:then></f:then>
+				<f:else><tr><td colspan="2"><!--  --></td></f:else>
+			</f:if>
+			
+				<td class="lang">
+					<f:if condition="{sitemap.sysLanguageUid}">
+						<span title="{sitemap.sysLanguageFlag}" class="t3-icon t3-icon-flags t3-icon-flags-{sitemap.sysLanguageFlag} t3-icon-{sitemap.sysLanguageFlag}">&nbsp;</span>
+					</f:if>
+				</td>
+				<td class="delete">
+					<f:link.action action="delete" arguments="{sitemap : sitemap}">
+						<img src="./sysext/t3skin/icons/gfx/garbage.gif" width="16" height="16" title="Delete Sitemap Entry" alt="">
+					</f:link.action>
+				</td>
+				<td class="params" title="{sitemap.urlParams}">
+					{sitemap.urlParamsTrimed}
+				</td>
+				<td class="url" title="{sitemap.requestUri}">
+					{sitemap.requestUriTrimed}
+				</td>
+				<td class="priority">
+					<f:form action="update" name="sitemap" enctype="post" object="{sitemap}" >
+						<f:form.select property="priority"  options="{1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'10' }" value="{sitemap.priority}" />
+					</f:form>
+				</td>
+				<td class="lastchange" title="{sitemap.lastmod -> f:format.date(format: 'd.m.Y - H:i:s')}">
+					<f:format.date format="d.m.Y">{sitemap.lastmod}</f:format.date>
+				</td>
+			</tr>
+		</f:for>
+	</f:if>
+</tr>
+
+<f:if condition="{item.subpages}">
+	<f:for each="{item.subpages}" as="page" iteration="i">
+		<f:render partial="Sitemap/page" arguments="{item: page}" />
+	</f:for>
+</f:if>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T11:46:43Z" product-name="dynamicgooglesitemap">
+		<header/>
+		<body>
+
+			<trans-unit id="for_page.description">
+				<source>The coresponding page ID</source>
+			</trans-unit>
+			<trans-unit id="url.description">
+				<source>The URL.</source>
+			</trans-unit>
+			<trans-unit id="priority.description">
+				<source>Priority of the url in context to the whole  sitemap.</source>
+			</trans-unit>
+			<trans-unit id="lastmod.description">
+				<source>Date when the content of the url was last changed.</source>
+			</trans-unit>
+			<trans-unit id="lastmod_hash.description">
+				<source>Hash for monitoring changes of the page</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

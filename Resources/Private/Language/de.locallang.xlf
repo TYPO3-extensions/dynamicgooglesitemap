@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-30T12:00:00Z" product-name="dynamicgooglesitemap">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap">
+				<source>Sitemap</source>
+				<target>Sitemap</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.for_page">
+				<source>The corresponding page ID</source>
+				<target>Die entsprechende Seite ID</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.url">
+				<source>The URL.</source>
+				<target>Seiten URL.</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.priority">
+				<source>Priority of the url in context to the whole sitemap.</source>
+				<target>Priorität der URL im Kontext zu der ganzen Sitemap.</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod">
+				<source>Date when the content of the url was last changed.</source>
+				<target>Datum wenn die Seite zu lätzt gehändert wurde.</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod_hash">
+				<source>Hash for monitoring changes of the page</source>
+				<target>Hash zur Überwachung von Änderungen auf der Seite</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.nopage">
+				<source>Please click on a page in the tree.</source>
+				<target>Bitte klicken Sie auf eine Seite im Seitenabum.</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.domain">
+				<source>Showing Sitemap for Domain</source>
+				<target>Zeige Sitemap für Domain</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.update">
+				<source>Sitemap Entry was updated.</source>
+				<target>Sitemap eintrag wurde aktualisiert.</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.remove">
+				<source>Sitemap Entry was removed.</source>
+				<target>Sitemap eintrag wurde entfernt.</target>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.allremove">
+				<source>All Sitemap Entrys ware removed.</source>
+				<target>Alle Sitemap einträge wurden entfernt.</target>
+			</trans-unit>
+			
+			<trans-unit id="config.ignorParams">
+				<source>Ignor Parameters (Comma separated List)</source>
+				<target>Ignoriere Parameter (Kommata getrennte Liste)</target>
+			</trans-unit>
+			<trans-unit id="config.sorting">
+				<source>Sort Sitemap by Field</source>
+				<target>Sortiere Sitemap by Feld</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

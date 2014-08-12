@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T11:46:43Z" product-name="dynamicgooglesitemap">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap">
+				<source>Sitemap</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.for_page">
+				<source>The coresponding page ID</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.url">
+				<source>The URL.</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.priority">
+				<source>Priority of the url in context to the whole  sitemap.</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod">
+				<source>Date when the content of the url was last changed.</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod_hash">
+				<source>Hash for monitoring changes of the page</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.nopage">
+				<source>Please click on a page in the tree</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.domain">
+				<source>Showing Sitemap for Domain</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.update">
+				<source>Sitemap Entry was updated.</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.remove">
+				<source>Sitemap Entry was removed.</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.allremove">
+				<source>All Sitemap Entrys ware removed.</source>
+			</trans-unit>
+			
+			<trans-unit id="config.ignoreParams">
+				<source>Ignore Parameters (Comma seperated List)</source>
+			</trans-unit>
+			<trans-unit id="config.sorting">
+				<source>Sort Sitemap by Field</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

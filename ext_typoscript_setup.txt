@@ -1,0 +1,33 @@
+plugin.tx_dynamicgooglesitemap {
+    persistence {
+        classes {
+            DieMedialen\Dynamicgooglesitemap\Domain\Model\Pages {
+                mapping {
+                    tableName = pages
+                 }
+           }
+        }
+    }
+}
+
+module.tx_dynamicgooglesitemap < plugin.tx_dynamicgooglesitemap
+
+config.tx_extbase {
+	 persistence{
+		enableAutomaticCacheClearing = 1
+		updateReferenceIndex = 0
+		classes {
+			DieMedialen\Dynamicgooglesitemap\Domain\Model\Pages {
+				mapping {
+					tableName = pages
+					columns {
+						uid.mapOnProperty = uid
+						pid.mapOnProperty = pid
+						sorting.mapOnProperty = sorting
+						title.mapOnProperty = title
+					}
+				}
+			}
+		}
+	}
+}
