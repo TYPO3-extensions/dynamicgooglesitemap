@@ -81,6 +81,12 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $hidden;
 	
 	/**
+	 * noSearch
+	 * @var \integer
+	 */
+	protected $noSearch;
+	
+	/**
 	 * navHide
 	 * @var integer
 	 */
@@ -97,8 +103,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var integer
 	 */
 	protected $isSiteroot;
-	
-	
 	
 	/**
 	 * Returns the pid
@@ -148,6 +152,13 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getHidden(){
 		return $this->hidden;
+	}
+	
+	/**
+	 * @param \integer $noSearch
+	 */
+	public function getNoSearch(){
+		return $this->noSearch;
 	}
 	
 	/**

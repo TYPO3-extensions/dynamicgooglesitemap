@@ -60,6 +60,10 @@
 				<source>Sort Sitemap by Field</source>
 				<target>Sortiere Sitemap by Feld</target>
 			</trans-unit>
+			<trans-unit id="config.nosearch">
+				<source>Respect 'Include in Search' field from page properties</source>
+				<target>Respektiere 'In Indexsuche einbeziehen' Feld von Seiteneigenschaften</target>
+			</trans-unit>
 			
 		</body>
 	</file>

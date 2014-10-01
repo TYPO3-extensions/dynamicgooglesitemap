@@ -16,12 +16,18 @@ class SitemapRenderer {
 		$httpHost = $_SERVER['HTTP_HOST'];
 		$confArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['dynamicgooglesitemap']);
 		$orderBy = $this->field[$confArray['sorting']];
+		$respectNoSearch = (boolean) $confArray['respectNoSearch'];
+		
+		$noSearchSql = '';
+		if($respectNoSearch) {
+			$noSearchSql = ' AND p.no_search = 0';
+		}
 		
 		$respectEnableFields = ' AND p.hidden=0 AND (p.starttime<=' . time() . ') AND (p.endtime=0 OR p.endtime>' . time() . ') AND p.deleted=0';
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*', 
-			'pages p, tx_dynamicgooglesitemap_domain_model_sitemap s', 
-			'p.uid = s.for_page AND http_host = \'' . $httpHost . '\'' . $respectEnableFields,
+			'pages p, ' . $this->table . ' s', 
+			'p.uid = s.for_page AND http_host = \'' . $httpHost . '\'' . $respectEnableFields . $noSearchSql,
 			'', // Group By
 			$orderBy
 		);

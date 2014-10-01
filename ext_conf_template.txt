@@ -3,3 +3,6 @@ ignoreParams = cHash
 
   # cat=Basic//20; type=options[UID,PageTitle,URL,LastChanged]; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.sorting
 sorting = uid
+
+  # cat=Basic//30; type=boolean; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.nosearch
+respectNoSearch = 1

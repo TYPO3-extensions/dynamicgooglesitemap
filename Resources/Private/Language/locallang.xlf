@@ -47,6 +47,9 @@
 			<trans-unit id="config.sorting">
 				<source>Sort Sitemap by Field</source>
 			</trans-unit>
+			<trans-unit id="config.nosearch">
+				<source>Respect 'Include in Search' field from page properties</source>
+			</trans-unit>
 			
 		</body>
 	</file>

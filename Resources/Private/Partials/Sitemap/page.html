@@ -1,4 +1,4 @@
-<tr class="item">
+<tr class="item{f:if(condition: item.page.noSearch, then: ' nosearch')}">
 	<td class="title">
 		<f:for each="{item.level}" as="level">
 			<img src="./clear.gif" width="18" height="16" alt="">
@@ -27,7 +27,12 @@
 		<f:for each="{item.sitemaps}" as="sitemap" iteration="i">
 			<f:if condition="{i.isFirst}">
 				<f:then></f:then>
-				<f:else><tr><td colspan="2"><!--  --></td></f:else>
+				<f:else>
+					<f:if condition="{item.page.noSearch}">
+						<f:then><tr class="nosearch"><td colspan="2"><!--  --></td></f:then>
+						<f:else><tr><td colspan="2"><!--  --></td></f:else>
+					</f:if>
+				</f:else>
 			</f:if>
 			
 				<td class="lang">
