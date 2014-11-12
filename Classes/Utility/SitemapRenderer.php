@@ -55,11 +55,15 @@ class SitemapRenderer {
 				foreach($page as $lang) {
 					$date->setTimestamp($lang['SYS_LASTCHANGED']);
 					$prio = sprintf('%0.1F', intval($lang['priority']) / 10);
+					$protocol = 'http';
+					if($lang['https']){ $protocol .= 's'; }
 					
 					echo "\t" . '<url>' . "\n";
-						echo "\t\t" . '<loc><![CDATA[http://' . $lang['http_host'] . $lang['request_uri'] . ']]></loc>' . "\n";
+						echo "\t\t" . '<loc>' . $protocol . '://' . $lang['http_host'] . htmlentities($lang['request_uri']) . '</loc>' . "\n";
 						foreach($page as $ref) {
-							echo "\t\t" . '<xhtml:link rel="alternate" hreflang="' . $ref['lang_key'] . '" href="http://' . $ref['http_host'] . str_replace('&', '&amp;', str_replace('&amp;', '&', $ref['request_uri'])) . '" />' . "\n";
+							$protocolRef = 'http';
+							if($ref['https']){ $protocolRef .= 's'; }
+							echo "\t\t" . '<xhtml:link rel="alternate" hreflang="' . $ref['lang_key'] . '" href="' . $protocolRef . '://' . $ref['http_host'] . str_replace('&', '&amp;', str_replace('&amp;', '&', $ref['request_uri'])) . '" />' . "\n";
 						}
 						echo "\t\t" . '<lastmod>' . $date->format('Y-m-d') . '</lastmod>' . "\n";
 						echo "\t\t" . '<changefreq>monthly</changefreq>' . "\n";
@@ -71,8 +75,11 @@ class SitemapRenderer {
 				foreach($page as $lang) {
 					$date->setTimestamp($lang['SYS_LASTCHANGED']);
 					$prio = sprintf('%0.1F', intval($lang['priority']) / 10);
+					$protocol = 'http';
+					if($lang['https']){ $protocol .= 's'; }
+					
 					echo "\t" . '<url>' . "\n";
-						echo "\t\t" . '<loc><![CDATA[http://' . $lang['http_host'] . $lang['request_uri'] . ']]></loc>' . "\n";
+						echo "\t\t" . '<loc>' . $protocol . '://' . $lang['http_host'] . htmlentities($lang['request_uri']) . '</loc>' . "\n";
 						echo "\t\t" . '<lastmod>' . $date->format('Y-m-d') . '</lastmod>' . "\n";
 						echo "\t\t" . '<changefreq>monthly</changefreq>' . "\n";
 						echo "\t\t" . '<priority>' . $prio . '</priority>' . "\n";
@@ -104,8 +111,8 @@ class SitemapRenderer {
 		$TSFE->initTemplate();
 		$TSFE->getConfigArray();
 		
-		// not instancieated??
-		//\TYPO3\CMS\Core\Core\Bootstrap::getInstance()->loadCachedTca();
+		// Initialize TCA
+		\TYPO3\CMS\Frontend\Utility\EidUtility::initTCA();
 		$TSFE->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 		$TSFE->settingLanguage();
 		$TSFE->settingLocale();

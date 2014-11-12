@@ -56,6 +56,10 @@
 				<source>Ignor Parameters (Comma separated List)</source>
 				<target>Ignoriere Parameter (Kommata getrennte Liste)</target>
 			</trans-unit>
+			<trans-unit id="config.ignorePageType">
+				<source>Ignore page types e.g. 98 for print (Comma seperated list)</source>
+				<target>Ignoriere Sitentyp z.B 98 für Druckvariante (Kommata getrennte Liste)</target>
+			</trans-unit>
 			<trans-unit id="config.sorting">
 				<source>Sort Sitemap by Field</source>
 				<target>Sortiere Sitemap by Feld</target>

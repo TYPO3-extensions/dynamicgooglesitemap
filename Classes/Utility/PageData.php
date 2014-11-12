@@ -20,6 +20,14 @@ class PageData {
 		$tsConfig = $GLOBALS['TSFE']->tmpl->setup['config.'];
 		$gpVars = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET();
 		
+		// Exit early if page is viewed in preview mode from TYPO3
+		if($GLOBALS['TSFE']->fePreview || isset($gpVars['ADMCMD_view']) && isset($gpVars['ADMCMD_editIcons'])) { return; }
+		
+		// Exit early if page type is exluded from sitemap.
+		$confArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['dynamicgooglesitemap']);
+		$ignoreTypes = explode(',', $confArray['ignorePageType']);
+		if(isset($GLOBALS['TSFE']->type) && in_array($GLOBALS['TSFE']->type, $ignoreTypes)) { return; }
+		
 		$pageUid = intval($GLOBALS['TSFE']->page['uid']);
 		$doktype = intval($GLOBALS['TSFE']->page['doktype']);
 		$feAuth = intval($GLOBALS['TSFE']->page['fe_group']);
@@ -47,8 +55,10 @@ class PageData {
 		$lastChanged = intval($GLOBALS['TSFE']->page['SYS_LASTCHANGED']);
 		if($lastChanged == 0) {$lastChanged = time();}
 		
-		$httpHost = $_SERVER['HTTP_HOST'];
-		$requestUri = $_SERVER['REQUEST_URI'];
+		$httpHost = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST');
+		$requestUri = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI');
+		$https = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL');
+		
 		$urlParams = $this->getGetParams($gpVars);
 
 		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow ('*', $this->table, 'http_host = \'' .  $httpHost . '\' AND for_page = ' . $pageUid . ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = \'' . $lang . '\' ');
@@ -61,7 +71,8 @@ class PageData {
 					'content_hash' => $contentHash,
 					'lastmod' => $lastChanged,
 					'sys_language_uid' => $lang,
-					'lang_key' => $tsConfig['language']
+					'lang_key' => $tsConfig['language'],
+					'https' => $https
 			);
 			$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery($this->table, $insertArray);
 		} else if($row['content_hash'] != $contentHash || $row['request_uri'] != $requestUri ) {
@@ -69,7 +80,8 @@ class PageData {
 			$where_clause = 'for_page = ' . $pageUid. ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = ' . $tsConfig['sys_language_uid'];
 			$field_values = array(
 				'request_uri' => $requestUri,
-				'lastmod' => $lastChanged
+				'lastmod' => $lastChanged,
+				'https' => $https
 			);
 			$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $this->table, $where_clause, $field_values);
 		}

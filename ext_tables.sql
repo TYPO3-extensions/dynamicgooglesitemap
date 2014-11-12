@@ -14,6 +14,7 @@ CREATE TABLE tx_dynamicgooglesitemap_domain_model_sitemap (
 	priority int(11) DEFAULT '5' NOT NULL,
 	lastmod int(11) DEFAULT '0' NOT NULL,
 	lang_key varchar(10) DEFAULT '' NOT NULL,
+	https tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,

@@ -1,6 +1,9 @@
   # cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignoreParams
 ignoreParams = cHash
 
+  # cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignorePageType
+ignorePageType = 98
+
   # cat=Basic//20; type=options[UID,PageTitle,URL,LastChanged]; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.sorting
 sorting = uid
 

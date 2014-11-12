@@ -42,7 +42,10 @@
 			</trans-unit>
 			
 			<trans-unit id="config.ignoreParams">
-				<source>Ignore Parameters (Comma seperated List)</source>
+				<source>Ignore parameters (Comma seperated list)</source>
+			</trans-unit>
+			<trans-unit id="config.ignorePageType">
+				<source>Ignore page types e.g. 98 for print (Comma seperated list)</source>
 			</trans-unit>
 			<trans-unit id="config.sorting">
 				<source>Sort Sitemap by Field</source>
