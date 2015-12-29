@@ -1,5 +1,5 @@
   # cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignoreParams
-ignoreParams = cHash
+ignoreParams = L, cHash
 
   # cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignorePageType
 ignorePageType = 98

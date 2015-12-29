@@ -38,21 +38,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			<f:translate key="tx_dynamicgooglesitemap_domain_model_sitemap.domain" htmlEscape="false" />
 			<f:form.select name="domain" options="{domains}" value="{domain}"/><br/><br/>
 		</f:form>
-		<table>
-			<tr>
-				<th>Titel</th>
-				<th>UID</th>
-				<th>Lang</th>
-				<th>
-					<f:link.action action="deleteAll">
-						<img src="./sysext/t3skin/icons/gfx/garbage.gif" width="16" height="16" title="Delete Sitemap Entry" alt="">
+		<table class="typo3-dblist">
+			<tr class="t3-row-header">
+				<td>Titel</td>
+				<td>UID</th>
+				<td>Lang</td>
+				<td>
+					<f:link.action action="deleteAll" title="Delete all">
+						<img src="./sysext/t3skin/icons/gfx/garbage.gif" width="16" height="16" title="Delete all" alt="">
 					</f:link.action>
-					Delete All
-				</th>
-				<th>URL Parameters</th>
-				<th>URL</th>
-				<th>Priority</th>
-				<th>Last Changed</th>
+				</td>
+				<td>URL Parameters</td>
+				<td>URL</td>
+				<td>Priority</td>
+				<td>Last Changed</td>
 			</tr>
 			<f:render partial="Sitemap/page" arguments="{item: item}" />
 		</table>
