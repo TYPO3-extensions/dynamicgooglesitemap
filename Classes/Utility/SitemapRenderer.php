@@ -129,26 +129,26 @@ class SitemapRenderer {
 	 */
 	private function initTSFE() {
 		/** @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $TSFE */
-		$TSFE = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController', $GLOBALS['TYPO3_CONF_VARS'], 0, 0);
+		$GLOBALS['TSFE'] = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController', $GLOBALS['TYPO3_CONF_VARS'], 0, 0);
 
 		// Initialize Language
 		\TYPO3\CMS\Frontend\Utility\EidUtility::initLanguage();
 		\TYPO3\CMS\Frontend\Utility\EidUtility::initTCA();
 
 		// Initialize FE User.
-		$TSFE->initFEuser();
+		$GLOBALS['TSFE']->initFEuser();
 
 		// Important: no Cache for Ajax stuff
-		$TSFE->set_no_cache();
-		$TSFE->checkAlternativeIdMethods();
+		$GLOBALS['TSFE']->set_no_cache();
+		$GLOBALS['TSFE']->checkAlternativeIdMethods();
 
-		$TSFE->determineId();
-		$TSFE->initTemplate();
-		$TSFE->getConfigArray();
+		$GLOBALS['TSFE']->determineId();
+		$GLOBALS['TSFE']->initTemplate();
+		$GLOBALS['TSFE']->getConfigArray();
 
-		$TSFE->cObj = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
-		$TSFE->settingLanguage();
-		$TSFE->settingLocale();
+		$GLOBALS['TSFE']->cObj = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+		$GLOBALS['TSFE']->settingLanguage();
+		$GLOBALS['TSFE']->settingLocale();
 	}
 }
 
