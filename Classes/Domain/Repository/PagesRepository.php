@@ -37,7 +37,10 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Repository;
 class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
+	 * findByPid
+	 *
 	 * @param integer $pid
+	 *
 	 * @return TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
 	 */
 	public function findByPid($pid) {
@@ -49,8 +52,11 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
+	 * getSubpages
+	 *
 	 * @param mixed $page
-	 * @return multitype:
+	 *
+	 * @return mixed
 	 */
 	function getSubpages($page) {
 		$pagesArray = array();

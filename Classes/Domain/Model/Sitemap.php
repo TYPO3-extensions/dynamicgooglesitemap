@@ -45,7 +45,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * The coresponding page ID
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $forPage;
 
@@ -76,7 +76,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Priority of the url in context to the whole  sitemap.
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $priority;
 
@@ -97,7 +97,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * sys_language_uid 
 	 * 
-	 * @var integer
+	 * @var int
 	 */
 	protected $sysLanguageUid;
 
@@ -111,7 +111,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the forPage
 	 *
-	 * @return integer $forPage
+	 * @return int $forPage
 	 */
 	public function getForPage() {
 		return $this->forPage;
@@ -120,7 +120,8 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the forPage
 	 *
-	 * @param integer $forPage
+	 * @param int $forPage
+	 *
 	 * @return void
 	 */
 	public function setForPage($forPage) {
@@ -140,6 +141,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the url
 	 *
 	 * @param string $requestUri
+	 *
 	 * @return void
 	 */
 	public function setRequestUri($requestUri) {
@@ -159,6 +161,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the HTTP Host
 	 *
 	 * @param string $httpHost
+	 *
 	 * @return void
 	 */
 	public function setHttpHost($httpHost) {
@@ -178,6 +181,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the Content Hash
 	 *
 	 * @param string $contentHash
+	 *
 	 * @return void
 	 */
 	public function setContentHash($contentHash) {
@@ -187,7 +191,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the priority
 	 *
-	 * @return integer $priority
+	 * @return int $priority
 	 */
 	public function getPriority() {
 		return $this->priority;
@@ -196,7 +200,8 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the priority
 	 *
-	 * @param integer $priority
+	 * @param int $priority
+	 *
 	 * @return void
 	 */
 	public function setPriority($priority) {
@@ -216,6 +221,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the lastmod
 	 *
 	 * @param \DateTime $lastmod
+	 *
 	 * @return void
 	 */
 	public function setLastmod($lastmod) {
@@ -235,6 +241,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the URL Params
 	 * 
 	 * @param string $urlParams
+	 *
 	 * @return void
 	 */
 	public function setUrlParams($urlParams) {
@@ -244,7 +251,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the sysLanguageUid
 	 * 
-	 * @return integer
+	 * @return int
 	 */
 	public function getSysLanguageUid(){
 		return $this->sysLanguageUid;
@@ -253,7 +260,8 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the sysLanguageUid
 	 * 
-	 * @param integer $sysLanguageUid
+	 * @param int $sysLanguageUid
+	 *
 	 * @return void
 	 */
 	public function setSysLanguageUid($sysLanguageUid) {
@@ -273,6 +281,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the sysLanguageFlag
 	 * 
 	 * @param string $sysLanguageFlag
+	 *
 	 * @return void
 	 */
 	public function setSysLanguageFlag($sysLanguageFlag) {

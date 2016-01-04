@@ -36,12 +36,15 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Session;
 class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	
 	/**
+	 * Session key.
+	 *
 	 * @var string
 	 */
 	protected $sessionKey = 'tx_dynamicgooglesitemap';
 	
 	/**
 	 * @param string $sessionKey
+	 *
 	 * @return void
 	 */
 	public function setSessionKey($sessionKey) {
@@ -58,6 +61,7 @@ class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $key
 	 * @param mixed $value
+	 *
 	 * @return void
 	 */
 	public function save($key, $value) {
@@ -68,6 +72,7 @@ class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	
 	/**
 	 * @param string $key
+	 *
 	 * @return mixed
 	 */
 	public function get($key) {
@@ -81,6 +86,7 @@ class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	
 	/**
 	 * @param string $key
+	 *
 	 * @return void
 	 */
 	public function delete($key) {

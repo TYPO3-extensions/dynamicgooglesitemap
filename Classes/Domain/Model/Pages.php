@@ -37,21 +37,21 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * uid
-	 * @var integer
+	 * @var int
 	 * @validate NotEmpty
 	 */
 	protected $uid;
 
 	/**
 	 * pid
-	 * @var integer
+	 * @var int
 	 * @validate NotEmpty
 	 */
 	protected $pid;
 
 	/**
 	 * sorting
-	 * @var integer
+	 * @var int
 	 * @validate NotEmpty
 	 */
 	protected $sorting;
@@ -65,43 +65,43 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * doktype
-	 * @var integer
+	 * @var int
 	 */
 	protected $doktype;
 
 	/**
 	 * shortcutMode
-	 * @var integer
+	 * @var int
 	 */
 	protected $shortcutMode;
 
 	/**
 	 * hidden
-	 * @var integer
+	 * @var int
 	 */
 	protected $hidden;
 
 	/**
 	 * noSearch
-	 * @var \integer
+	 * @var int
 	 */
 	protected $noSearch;
 
 	/**
 	 * navHide
-	 * @var integer
+	 * @var int
 	 */
 	protected $navHide;
 
 	/**
 	 * feGroup
-	 * @var integer
+	 * @var int
 	 */
 	protected $feGroup;
 
 	/**
 	 * isSiteroot
-	 * @var integer
+	 * @var int
 	 */
 	protected $isSiteroot;
 
@@ -135,49 +135,49 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the Doktime as Integer
 	 * 
-	 * @return integer $doktype
+	 * @return int $doktype
 	 */
 	public function getDoktype() {
 		return $this->doktype;
 	}
 
 	/**
-	 * @return integer $shortcutMode
+	 * @return int $shortcutMode
 	 */
 	public function getShortcutMode() {
 		return $this->shortcutMode;
 	}
 
 	/**
-	 * @return integer $hidden
+	 * @return int $hidden
 	 */
 	public function getHidden() {
 		return $this->hidden;
 	}
 
 	/**
-	 * @param \integer $noSearch
+	 * @param int $noSearch
 	 */
 	public function getNoSearch() {
 		return $this->noSearch;
 	}
 
 	/**
-	 * @return integer $navHide
+	 * @return int $navHide
 	 */
 	public function getNavHide() {
 		return $this->navHide;
 	}
 
 	/**
-	 * @return integer $feGroup
+	 * @return int $feGroup
 	 */
 	public function getFeGroup() {
 		return $this->feGroup;
 	}
 
 	/**
-	 * @return integer $isSiteroot
+	 * @return int $isSiteroot
 	 */
 	public function getIsSiteroot() {
 		return $this->isSiteroot;
@@ -187,7 +187,7 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Returns the CSS Class for the page icon 
 	 * depending on the page Doctype
 	 *
-	 * @return string $css
+	 * @return string
 	 */
 	public function getPageCssClass() {
 		$doktype = array(
@@ -202,7 +202,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		);
 
 		$suffix = '';
-
 		if($this->isSiteroot) {
 			if($this->doktype == 4 && $this->shortcutMode > 0) {
 				$suffix = '-page-shortcut-root';
@@ -218,7 +217,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		} 
 
 		$css = 't3-icon-pagetree' . $suffix;
-
 		if($this->doktype != 1 && $this->navHide) {
 			$css .= '-hideinmenu';
 		}

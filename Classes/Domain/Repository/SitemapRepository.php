@@ -69,9 +69,11 @@ class SitemapRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Finds an object matching the given identifier.
 	 *
-	 * @param integer $uid The identifier of the object to find
-	 * @return object The matching object if found, otherwise NULL
 	 * @api
+	 *
+	 * @param integer $uid The identifier of the object to find
+	 *
+	 * @return object The matching object if found, otherwise NULL
 	 */
 	public function findByUid($uid) {
 		$query = $this->createQuery();
@@ -83,9 +85,11 @@ class SitemapRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Finds an object matching the given identifier.
 	 *
-	 * @param integer $uid The identifier of the object to find
-	 * @return object The matching object if found, otherwise NULL
 	 * @api
+	 *
+	 * @param integer $uid The identifier of the object to find
+	 *
+	 * @return object The matching object if found, otherwise NULL
 	 */
 	public function findByDomain($domain) {
 		$query = $this->createQuery();
@@ -97,8 +101,9 @@ class SitemapRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Removes all objects for the given domain
 	 *
-	 * @return void
 	 * @api
+	 *
+	 * @return void
 	 */
 	public function removeAllByDomain($domain) {
 		foreach ($this->findByDomain($domain) AS $object) {
@@ -109,10 +114,12 @@ class SitemapRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Return all Sitemap entrys for a given page and domain.
 	 * 
+	 * @api
+	 *
 	 * @param integer $uid the id of the page
 	 * @param string $domain damain for filtering.
+	 *
 	 * @return object The matching object if found, otherwise NULL
-	 * @api
 	 */
 	public function findForPage($uid, $domain) {
 		$query = $this->createQuery();

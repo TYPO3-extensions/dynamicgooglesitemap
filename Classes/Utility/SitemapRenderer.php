@@ -38,8 +38,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class SitemapRenderer {
 
-	// mapping the names form extension configuration (sorting) to actual table fields.
-	private $field = array('UID' => 's.for_page', 'PageTitle' => 'p.title', 'URL' => 's.request_uri', 'LastChanged' => 's.lastmod');
+	/**
+	 * Mapping the names form extension configuration (sorting) to actual table fields.
+	 *
+	 * @var array
+	 */
+	private $field = array(
+		'UID' => 's.for_page',
+		'PageTitle' => 'p.title',
+		'URL' => 's.request_uri',
+		'LastChanged' => 's.lastmod'
+	);
 
 	/**
 	 * Render sitemap.
@@ -56,11 +65,12 @@ class SitemapRenderer {
 			$noSearchSql = ' AND p.no_search = 0';
 		}
 
-		$respectEnableFields = ' AND p.hidden=0 AND (p.starttime<=' . time() . ') AND (p.endtime=0 OR p.endtime>' . time() . ') AND p.deleted=0';
+		$time = time();
+		$respectEnableFields = ' AND p.hidden=0 AND (p.starttime<=' . $time . ') AND (p.endtime=0 OR p.endtime>' . $time . ') AND p.deleted=0';
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*', 
 			'pages p, ' . Sitemap::TABLE . ' s',
-			'p.uid = s.for_page AND http_host = \'' . $httpHost . '\'' . $respectEnableFields . $noSearchSql,
+			'p.uid = s.for_page AND http_host = "' . $httpHost . '"' . $respectEnableFields . $noSearchSql,
 			'', // Group By
 			$orderBy
 		);
@@ -72,7 +82,10 @@ class SitemapRenderer {
 		}
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
-		header('Content-Type: application/xml; charset=utf-8');
+		if (!headers_sent()) {
+			header('Content-Type: application/xml; charset=utf-8');
+		}
+
 		echo '<?xml version="1.0" encoding="UTF-8"?>'. PHP_EOL;
 		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . PHP_EOL;
 
@@ -125,6 +138,8 @@ class SitemapRenderer {
 	}
 
 	/**
+	 * Init TSFE.
+	 *
 	 * Taken form http://typo3.org/documentation/snippets/sd/466/
 	 */
 	private function initTSFE() {

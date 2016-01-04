@@ -42,6 +42,7 @@ class PageData {
 	 * Gather all needed Data and Insert or Update into Database.
 	 *
 	 * @param array $params
+	 *
 	 * @return void
 	 */
 	public function getData(&$params) {
@@ -131,6 +132,7 @@ class PageData {
 	 * Configurable through the Extensions Configuration.
 	 *
 	 * @param array $params
+	 *
 	 * @return string
 	 */
 	private function getGetParams($params){
@@ -138,19 +140,25 @@ class PageData {
 		$ignoreParams = GeneralUtility::trimExplode(',', $confArray['ignoreParams'], TRUE);
 
 		ksort($params);
-		$str = "";
+		$str = '';
 		foreach ($params as $key => $value) {
-			#if($key == 'id') {continue;}
-			if(in_array($key,$ignoreParams)) {continue;}
-			if(is_array($value)){
+			if(in_array($key, $ignoreParams)) {
+				continue;
+			}
+			if(is_array($value)) {
 				ksort($value);
 				foreach ($value as $k => $v) {
-					if(!empty($v)){ $str .= '&' . $key . '['. $k .']='. $v; }
+					if(!empty($v)) {
+						$str .= '&' . $key . '['. $k .']='. $v;
+					}
 				}
 			} else {
-				if(!empty($value)){ $str .= '&' . $key . '=' . $value ; }
+				if(!empty($value)) {
+					$str .= '&' . $key . '=' . $value;
+				}
 			}
 		}
+
 		return urldecode($str);
 	}
 }

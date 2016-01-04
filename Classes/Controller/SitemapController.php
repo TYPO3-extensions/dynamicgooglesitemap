@@ -99,6 +99,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * action edit
 	 *
 	 * @param \DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap
+	 *
 	 * @return void
 	 */
 	public function editAction(\DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap) {
@@ -109,10 +110,10 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * action update
 	 *
 	 * @param \DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap
-	 * 
+	 *
 	 * @return void
 	 */
-	public function updateAction(\DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap ) {
+	public function updateAction(\DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap) {
 		$this->sitemapRepository->update($sitemap);
 		$this->addFlashMessage($this->translate('tx_dynamicgooglesitemap_domain_model_sitemap.sitemap.update'));
 		$this->redirect('list');
@@ -122,6 +123,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * action delete
 	 *
 	 * @param \DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap
+	 *
 	 * @return void
 	 */
 	public function deleteAction(\DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap $sitemap) {
@@ -152,6 +154,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @param array $pages
 	 * @param string $domain
 	 * @param integer $level
+	 *
 	 * @return array <boolean, multitype:Ambigous <> array >
 	 */
 	private function getSitemapForPages(array $pages, $domain, $level = 0) {
@@ -178,7 +181,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$item['sitemaps'] = $sitemaps; 
 		}
 
-		if(count($pages['subpages']) > 0){
+		if(count($pages['subpages']) > 0) {
 			++$level;
 			foreach ($pages['subpages'] as $subpage) {
 				$item['subpages'][] = $this->getSitemapForPages($subpage, $domain, $level);
@@ -192,14 +195,17 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * Get Domain for current Page. 
 	 * If there is no domain entry, return the PHP HTTP Host.
 	 * 
-	 * @param integer $pid
+	 * @param int $pid
+	 *
 	 * @return string
 	 */
-	private function getDomain($pid){
+	private function getDomain($pid) {
 		$rootLine = \TYPO3\CMS\Backend\Utility\BackendUtility::BEgetRootLine($pid, '', TRUE);
 		$domainRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::firstDomainrecord($rootLine);
+		if (!empty($domainRecord)) {
+			return $domainRecord;
+		}
 
-		if (!empty($domainRecord)) { return $domainRecord; }
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST');
 	}
 
@@ -211,7 +217,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	private function getDomains(){
 		$domains = array();
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('domainName', 'sys_domain', "redirectTo = '' AND hidden = 0");
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('domainName', 'sys_domain', 'redirectTo = "" AND hidden = 0');
 		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
 			$domains[$row['domainName']] = $row['domainName'];
 		}
@@ -223,6 +229,7 @@ class SitemapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * translation shortcut
 	 *
 	 * @param string $label
+	 *
 	 * @return Ambigous <string, NULL, string, unknown>
 	 */
 	private function translate($label) {
