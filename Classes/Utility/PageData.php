@@ -1,13 +1,42 @@
 <?php
 namespace DieMedialen\Dynamicgooglesitemap\Utility;
 
-class PageData {
+use DieMedialen\Dynamicgooglesitemap\Domain\Model\Sitemap;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-	/**
-	 * Table name where the Sitemap are stored.
-	 * @var string
-	 */
-	private $table = 'tx_dynamicgooglesitemap_domain_model_sitemap';
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2014 Javor Issapov <javor.issapov@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2015 Patrick Schriner <patrick.schriner@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2016 Kai Ratzeburg <kai.ratzeburg@diemedialen.de>, Die Medialen GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
+/**
+ * PageData
+ *
+ * @package dynamicgooglesitemap
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ */
+class PageData {
 
 	/**
 	 * Gather all needed Data and Insert or Update into Database.
@@ -55,13 +84,13 @@ class PageData {
 		$lastChanged = intval($GLOBALS['TSFE']->page['SYS_LASTCHANGED']);
 		if($lastChanged == 0) {$lastChanged = time();}
 
-		$httpHost = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST');
-		$requestUri = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI');
-		$https = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL');
+		$httpHost = GeneralUtility::getIndpEnv('HTTP_HOST');
+		$requestUri = GeneralUtility::getIndpEnv('REQUEST_URI');
+		$https = GeneralUtility::getIndpEnv('TYPO3_SSL');
 
 		$urlParams = $this->getGetParams($gpVars);
 
-		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow ('*', $this->table, 'http_host = \'' .  $httpHost . '\' AND for_page = ' . $pageUid . ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = \'' . $lang . '\' ');
+		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow ('*', Sitemap::TABLE, 'http_host = \'' .  $httpHost . '\' AND for_page = ' . $pageUid . ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = \'' . $lang . '\' ');
 		if($row == NULL) {
 			$insertArray = array(
 					'for_page' => $pageUid,
@@ -74,7 +103,7 @@ class PageData {
 					'lang_key' => $tsConfig['language'],
 					'https' => $https
 			);
-			$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery($this->table, $insertArray);
+			$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery(Sitemap::TABLE, $insertArray);
 		} else if($row['content_hash'] != $contentHash || $row['request_uri'] != $requestUri ) {
 
 			$where_clause = 'for_page = ' . $pageUid. ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = ' . $tsConfig['sys_language_uid'];
@@ -83,23 +112,21 @@ class PageData {
 				'lastmod' => $lastChanged,
 				'https' => $https
 			);
-			$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $this->table, $where_clause, $field_values);
+			$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(Sitemap::TABLE, $where_clause, $field_values);
 		}
 
 	}
 
 	/**
-	 *
 	 * This function rebuilds the GET Parameters some of the parameters can be ignored.
-	 *  Configurable through the Extensions Configuration.
+	 * Configurable through the Extensions Configuration.
 	 *
 	 * @param array $params
 	 * @return string
 	 */
 	private function getGetParams($params){
-
 		$confArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['dynamicgooglesitemap']);
-		$ignoreParams = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $confArray['ignoreParams'], TRUE);
+		$ignoreParams = GeneralUtility::trimExplode(',', $confArray['ignoreParams'], TRUE);
 
 		ksort($params);
 		$str = "";
@@ -117,6 +144,4 @@ class PageData {
 		}
 		return urldecode($str);
 	}
-
 }
-?>

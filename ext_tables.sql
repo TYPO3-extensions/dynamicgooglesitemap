@@ -2,7 +2,6 @@
 # Table structure for table 'tx_dynamicgooglesitemap_domain_model_sitemap'
 #
 CREATE TABLE tx_dynamicgooglesitemap_domain_model_sitemap (
-
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
@@ -25,5 +24,4 @@ CREATE TABLE tx_dynamicgooglesitemap_domain_model_sitemap (
 	KEY for_page (for_page,url_params),
 	KEY parent (pid),
 	KEY language (l10n_parent,sys_language_uid)
-
 );

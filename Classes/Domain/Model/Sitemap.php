@@ -5,6 +5,8 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Model;
  *  Copyright notice
  *
  *  (c) 2014 Javor Issapov <javor.issapov@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2015 Patrick Schriner <patrick.schriner@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2016 Kai Ratzeburg <kai.ratzeburg@diemedialen.de>, Die Medialen GmbH
  *  
  *  All rights reserved
  *
@@ -26,13 +28,19 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Model;
  ***************************************************************/
 
 /**
- *
+ * Sitemap
  *
  * @package dynamicgooglesitemap
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+
+	/**
+	 * Tablename.
+	 *
+	 * @var string
+	 */
+	const TABLE = 'tx_dynamicgooglesitemap_domain_model_sitemap';
 
 	/**
 	 * The coresponding page ID
@@ -48,7 +56,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @validate NotEmpty
 	 */
 	protected $requestUri;
-	
+
 	/**
 	 * The HTTP Host
 	 *
@@ -56,7 +64,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @validate NotEmpty
 	 */
 	protected $httpHost;
-	
+
 	/**
 	 * The Content Hash
 	 *
@@ -78,21 +86,21 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \DateTime
 	 */
 	protected $lastmod;
-	
+
 	/**
 	 * $_GET Params for this URL
 	 * 
 	 * @var string
 	 */
 	protected $urlParams;
-	
+
 	/**
 	 * sys_language_uid 
 	 * 
 	 * @var integer
 	 */
 	protected $sysLanguageUid;
-	
+
 	/**
 	 * Flag short name from language
 	 * 
@@ -137,7 +145,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setRequestUri($requestUri) {
 		$this->requestUri = $requestUri;
 	}
-	
+
 	/**
 	 * Returns the HTTP Host
 	 *
@@ -156,7 +164,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setHttpHost($httpHost) {
 		$this->httpHost = $httpHost;
 	}
-	
+
 	/**
 	 * Returns the Content Hash
 	 *
@@ -222,7 +230,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getUrlParams(){
 		return $this->urlParams;
 	}
-	
+
 	/**
 	 * Sets the URL Params
 	 * 
@@ -251,7 +259,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setSysLanguageUid($sysLanguageUid) {
 		$this->sysLanguageUid = $sysLanguageUid;
 	}
-	
+
 	/**
 	 * Returns the sysLanguageFlag
 	 * 
@@ -270,7 +278,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setSysLanguageFlag($sysLanguageFlag) {
 		$this->sysLanguageFlag = $sysLanguageFlag;
 	}
-	
+
 	/**
 	 * Returns a trimed string of the URL Params.
 	 * 
@@ -279,7 +287,7 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getUrlParamsTrimed(){
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::fixed_lgd_cs($this->urlParams, 50);
 	}
-	
+
 	/**
 	 * Returns a trimed string of the Request URI.
 	 * 
@@ -288,6 +296,4 @@ class Sitemap extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getRequestUriTrimed(){
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::fixed_lgd_cs($this->requestUri, 50);
 	}
-	
 }
-?>

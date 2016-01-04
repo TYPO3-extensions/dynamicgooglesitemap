@@ -130,5 +130,3 @@ $TCA['tx_dynamicgooglesitemap_domain_model_sitemap'] = array(
 		),
 	),
 );
-
-?>

@@ -5,6 +5,8 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Session;
  *  Copyright notice
  *
  *  (c) 2014 Javor Issapov <javor.issapov@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2015 Patrick Schriner <patrick.schriner@diemedialen.de>, Die Medialen GmbH
+ *  (c) 2016 Kai Ratzeburg <kai.ratzeburg@diemedialen.de>, Die Medialen GmbH
  *  
  *  All rights reserved
  *
@@ -24,7 +26,13 @@ namespace DieMedialen\Dynamicgooglesitemap\Domain\Session;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
- 
+
+/**
+ * BackendSession
+ *
+ * @package dynamicgooglesitemap
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ */
 class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	
 	/**
@@ -67,6 +75,7 @@ class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		if(isset($data[$key])){
 			return $data[$key];
 		}
+
 		return NULL;
 	}
 	
@@ -80,5 +89,3 @@ class BackendSession extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$GLOBALS['BE_USER']->setAndSaveSessionData($this->sessionKey, $data);
 	}
 }
-
-?>
