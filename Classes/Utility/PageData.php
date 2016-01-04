@@ -65,9 +65,10 @@ class PageData {
 			return;
 		} 
 
-		$pageUid = intval($GLOBALS['TSFE']->page['uid']);
-		$doktype = intval($GLOBALS['TSFE']->page['doktype']);
-		$feAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $GLOBALS['TSFE']->page['fe_group'], TRUE);
+		$page = $GLOBALS['TSFE']->page;
+		$pageUid = isset($page['uid']) ? intval($page['uid']) : 0;
+		$doktype = isset($page['doktype']) ? intval($page['doktype']) : 0;
+		$feAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $page['fe_group'], TRUE);
 		$gpVars['id'] = $pageUid;
 		$contentHash = md5($params['bodyContent']);
 
