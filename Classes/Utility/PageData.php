@@ -68,39 +68,41 @@ class PageData {
 		$doktype = intval($GLOBALS['TSFE']->page['doktype']);
 		$feAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $GLOBALS['TSFE']->page['fe_group'], TRUE);
 		$gpVars['id'] = $pageUid;
-		$contentHash = md5($params['bodyContent']);;
+		$contentHash = md5($params['bodyContent']);
 
 		$lang = 0;
-		if(isset($gpVars['L'])){
-			$lang = intval($gpVars['L']);
+		if(isset($gpVars['L'])) {
+			$lang = $GLOBALS['TYPO3_DB']->quoteStr(intval($gpVars['L']), Sitemap::TABLE);
 		}
 
 		$langKey = 'x-default';
-		if(
-			!empty($tsConfig['sys_language_uid']) &&
-			intval($tsConfig['sys_language_uid']) == $lang &&
-			!empty($tsConfig['language'])
-		) {
+		if(!empty($tsConfig['sys_language_uid']) &&
+		   intval($tsConfig['sys_language_uid']) == $lang &&
+		   !empty($tsConfig['language'])) {
 			$langKey = $tsConfig['language'];
 		}
 
 		// Ignore non-standard pages or pages where a login is required.
 		// We don't want secured pages to appear on the sitemap.
-		if(empty($pageUid) || $doktype != 1 || count($feAuth) !== 0) {
+		if(empty($pageUid) || $doktype !== 1 || count($feAuth) < 1) {
 			return;
 		}
-
 		$lastChanged = intval($GLOBALS['TSFE']->page['SYS_LASTCHANGED']);
-		if($lastChanged == 0) {$lastChanged = time();}
+		if(0 === $lastChanged) {
+			$lastChanged = time();
+		}
 
-		$httpHost = GeneralUtility::getIndpEnv('HTTP_HOST');
-		$requestUri = GeneralUtility::getIndpEnv('REQUEST_URI');
+		$httpHost = $GLOBALS['TYPO3_DB']->quoteStr(GeneralUtility::getIndpEnv('HTTP_HOST'), Sitemap::TABLE);
+		$requestUri = $GLOBALS['TYPO3_DB']->quoteStr(GeneralUtility::getIndpEnv('REQUEST_URI'), Sitemap::TABLE);
 		$https = GeneralUtility::getIndpEnv('TYPO3_SSL');
+		$urlParams = $GLOBALS['TYPO3_DB']->quoteStr($this->getGetParams($gpVars), Sitemap::TABLE);
 
-		$urlParams = $this->getGetParams($gpVars);
-
-		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow ('*', Sitemap::TABLE, 'http_host = \'' .  $httpHost . '\' AND for_page = ' . $pageUid . ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = \'' . $lang . '\' ');
-		if($row == NULL) {
+		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow (
+			'*',
+			Sitemap::TABLE,
+			'http_host = "' .  $httpHost . '" AND for_page = ' . $pageUid . ' AND url_params = "' . $urlParams . '" AND sys_language_uid = "' . $lang . '"'
+		);
+		if(!$row || NULL === $row) {
 			$insertArray = array(
 					'for_page' => $pageUid,
 					'url_params' => $urlParams,
@@ -113,9 +115,8 @@ class PageData {
 					'https' => $https
 			);
 			$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery(Sitemap::TABLE, $insertArray);
-		} else if($row['content_hash'] != $contentHash || $row['request_uri'] != $requestUri ) {
-
-			$where_clause = 'for_page = ' . $pageUid. ' AND url_params = \'' . $urlParams . '\' AND sys_language_uid = ' . $tsConfig['sys_language_uid'];
+		} else if($row['content_hash'] !== $contentHash || $row['request_uri'] !== $requestUri) {
+			$where_clause = 'for_page = ' . $pageUid. ' AND url_params = "' . $urlParams . '" AND sys_language_uid = "' . $tsConfig['sys_language_uid'] . '"';
 			$field_values = array(
 				'request_uri' => $requestUri,
 				'lastmod' => $lastChanged,
@@ -123,7 +124,6 @@ class PageData {
 			);
 			$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(Sitemap::TABLE, $where_clause, $field_values);
 		}
-
 	}
 
 	/**
