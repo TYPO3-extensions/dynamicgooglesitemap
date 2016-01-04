@@ -37,7 +37,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class SitemapRenderer {
-	
+
 	// mapping the names form extension configuration (sorting) to actual table fields.
 	private $field = array('UID' => 's.for_page', 'PageTitle' => 'p.title', 'URL' => 's.request_uri', 'LastChanged' => 's.lastmod');
 
@@ -133,6 +133,7 @@ class SitemapRenderer {
 
 		// Initialize Language
 		\TYPO3\CMS\Frontend\Utility\EidUtility::initLanguage();
+		\TYPO3\CMS\Frontend\Utility\EidUtility::initTCA();
 
 		// Initialize FE User.
 		$TSFE->initFEuser();
@@ -140,12 +141,11 @@ class SitemapRenderer {
 		// Important: no Cache for Ajax stuff
 		$TSFE->set_no_cache();
 		$TSFE->checkAlternativeIdMethods();
+
 		$TSFE->determineId();
 		$TSFE->initTemplate();
 		$TSFE->getConfigArray();
 
-		// Initialize TCA
-		\TYPO3\CMS\Core\Core\Bootstrap::getInstance()->loadCachedTca();
 		$TSFE->cObj = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 		$TSFE->settingLanguage();
 		$TSFE->settingLocale();

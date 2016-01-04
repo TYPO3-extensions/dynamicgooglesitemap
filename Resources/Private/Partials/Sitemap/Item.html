@@ -71,6 +71,6 @@
 
 <f:if condition="{item.subpages}">
 	<f:for each="{item.subpages}" as="page" iteration="i">
-		<f:render partial="Sitemap/page" arguments="{item: page}" />
+		<f:render partial="Sitemap/Item" arguments="{item: page}" />
 	</f:for>
 </f:if>

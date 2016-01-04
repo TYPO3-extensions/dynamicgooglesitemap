@@ -49,19 +49,26 @@ class PageData {
 		$gpVars = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET();
 
 		// Exit early if page is viewed in preview mode from TYPO3
-		if($GLOBALS['TSFE']->fePreview || isset($gpVars['ADMCMD_view']) && isset($gpVars['ADMCMD_editIcons'])) { return; }
+		if($GLOBALS['TSFE']->fePreview || isset($gpVars['ADMCMD_view']) && isset($gpVars['ADMCMD_editIcons'])) {
+			return;
+		}
 
 		// Exit early if page type is exluded from sitemap.
 		$confArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['dynamicgooglesitemap']);
-		$ignoreTypes = explode(',', $confArray['ignorePageType']);
-		if(isset($GLOBALS['TSFE']->type) && in_array($GLOBALS['TSFE']->type, $ignoreTypes)) { return; }
-		if(isset($gpVars['M']) && $gpVars['M'] !== '') { return; } // Module links
+		$ignoreTypes = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $confArray['ignorePageType'], TRUE);
+		
+		if(isset($GLOBALS['TSFE']->type) && in_array($GLOBALS['TSFE']->type, $ignoreTypes)) { // Ignored types
+			return;
+		}
+		if(isset($gpVars['M']) && $gpVars['M'] !== '') { // Module links
+			return;
+		} 
 
 		$pageUid = intval($GLOBALS['TSFE']->page['uid']);
 		$doktype = intval($GLOBALS['TSFE']->page['doktype']);
-		$feAuth = intval($GLOBALS['TSFE']->page['fe_group']);
+		$feAuth = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $GLOBALS['TSFE']->page['fe_group'], TRUE);
 		$gpVars['id'] = $pageUid;
-		$contentHash = md5($params['bodyContent']);
+		$contentHash = md5($params['bodyContent']);;
 
 		$lang = 0;
 		if(isset($gpVars['L'])){
@@ -79,7 +86,9 @@ class PageData {
 
 		// Ignore non-standard pages or pages where a login is required.
 		// We don't want secured pages to appear on the sitemap.
-		if(empty($pageUid) || $doktype != 1 || $feAuth != 0) {return;}
+		if(empty($pageUid) || $doktype != 1 || count($feAuth) !== 0) {
+			return;
+		}
 
 		$lastChanged = intval($GLOBALS['TSFE']->page['SYS_LASTCHANGED']);
 		if($lastChanged == 0) {$lastChanged = time();}
