@@ -3,26 +3,36 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T11:46:43Z" product-name="dynamicgooglesitemap">
 		<header/>
 		<body>
-
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap">
 				<source>Sitemap</source>
 			</trans-unit>
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.for_page">
 				<source>For Page</source>
 			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.http_host">
+				<source>HTTP Host</source>
+			</trans-unit>
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.url">
 				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lang_key">
+				<source>Language key</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.content_hash">
+				<source>Content hash</source>
+			</trans-unit>
+			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.url_params">
+				<source>Url parameters</source>
 			</trans-unit>
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.priority">
 				<source>Priority</source>
 			</trans-unit>
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod">
-				<source>Lastmod</source>
+				<source>Last modified</source>
 			</trans-unit>
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap.lastmod_hash">
-				<source>Lastmod Hash</source>
+				<source>Last modified Hash</source>
 			</trans-unit>
-
 		</body>
 	</file>
 </xliff>

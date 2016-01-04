@@ -1,11 +1,14 @@
 # cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignoreParams
 ignoreParams = L, cHash
 
-# cat=Basic//10; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignorePageType
+# cat=Basic//20; type=input; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.ignorePageType
 ignorePageType = 98
 
-# cat=Basic//20; type=options[UID,PageTitle,URL,LastChanged]; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.sorting
+# cat=Basic//30; type=options[UID,PageTitle,URL,LastChanged]; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.sorting
 sorting = uid
 
-# cat=Basic//30; type=boolean; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.nosearch
+# cat=Basic//40; type=boolean; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.respectNoSearch
 respectNoSearch = 1
+
+# cat=Basic//50; type=boolean; label=LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang.xlf:config.respectRequestPath
+respectRequestPath = 0

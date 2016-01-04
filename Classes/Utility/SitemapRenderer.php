@@ -60,6 +60,19 @@ class SitemapRenderer {
 		$orderBy = $this->field[$confArray['sorting']];
 		$respectNoSearch = (boolean) $confArray['respectNoSearch'];
 
+		$respectRequestPath = '';
+		if ((boolean)$confArray['respectRequestPath']) {
+			$requestPath = preg_replace(
+				'/\?.*/',
+				'',
+				str_replace('index.php', '', ltrim(GeneralUtility::getIndpEnv('REQUEST_URI'), '/'))
+			);
+			if (!empty($requestPath)) {
+				$requestPath = $GLOBALS['TYPO3_DB']->quoteStr('/' . $requestPath, Sitemap::TABLE);
+				$respectRequestPath = ' AND s.request_uri LIKE "' . $requestPath . '%"';
+			}
+		}
+
 		$noSearchSql = '';
 		if($respectNoSearch) {
 			$noSearchSql = ' AND p.no_search = 0';
@@ -70,7 +83,7 @@ class SitemapRenderer {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*', 
 			'pages p, ' . Sitemap::TABLE . ' s',
-			'p.uid = s.for_page AND http_host = "' . $httpHost . '"' . $respectEnableFields . $noSearchSql,
+			'p.uid = s.for_page AND s.http_host = "' . $httpHost . '"' . $respectRequestPath . $respectEnableFields . $noSearchSql,
 			'', // Group By
 			$orderBy
 		);

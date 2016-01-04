@@ -3,7 +3,6 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T11:46:43Z" product-name="dynamicgooglesitemap">
 		<header/>
 		<body>
-			
             <trans-unit id="mlang_tabs_tab">
 				<source>Google Sitemap</source>
 			</trans-unit>

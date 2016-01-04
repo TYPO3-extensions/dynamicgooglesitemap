@@ -3,7 +3,6 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-30T12:00:00Z" product-name="dynamicgooglesitemap">
 		<header/>
 		<body>
-
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap">
 				<source>Sitemap</source>
 				<target>Sitemap</target>
@@ -52,7 +51,7 @@
 				<target>Alle Sitemap einträge wurden entfernt.</target>
 			</trans-unit>
 			
-			<trans-unit id="config.ignorParams">
+			<trans-unit id="config.ignoreParams">
 				<source>Ignor Parameters (Comma separated List)</source>
 				<target>Ignoriere Parameter (Kommata getrennte Liste)</target>
 			</trans-unit>
@@ -64,11 +63,14 @@
 				<source>Sort Sitemap by Field</source>
 				<target>Sortiere Sitemap by Feld</target>
 			</trans-unit>
-			<trans-unit id="config.nosearch">
+			<trans-unit id="config.respectNoSearch">
 				<source>Respect 'Include in Search' field from page properties</source>
 				<target>Respektiere 'In Indexsuche einbeziehen' Feld von Seiteneigenschaften</target>
 			</trans-unit>
-			
+			<trans-unit id="config.respectRequestPath">
+				<source>Respect request uri</source>
+				<target>Respektiere URL-Pfad beim Sitemap-Aufruf</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

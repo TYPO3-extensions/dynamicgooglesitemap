@@ -3,8 +3,20 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_dynamicgooglesitemap_domain_model_sitemap'] = array(
-	'ctrl' => $TCA['tx_dynamicgooglesitemap_domain_model_sitemap']['ctrl'],
+return array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap',
+		'label' => 'for_page',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'searchFields' => 'for_page,url,priority,lastmod,lastmod_hash,',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('dynamicgooglesitemap') . 'Resources/Public/Icons/tx_dynamicgooglesitemap_domain_model_sitemap.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, for_page, http_host, request_uri, content_hash, url_params, priority, lastmod, lang_key',
 	),
@@ -65,7 +77,7 @@ $TCA['tx_dynamicgooglesitemap_domain_model_sitemap'] = array(
 		),
 		'http_host' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.url',
+			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.http_host',
 			'config' => array(
 				'type' => 'input',
 				'size' => 255,
@@ -83,7 +95,7 @@ $TCA['tx_dynamicgooglesitemap_domain_model_sitemap'] = array(
 		),
 		'content_hash' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.url',
+			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.content_hash',
 			'config' => array(
 				'type' => 'input',
 				'size' => 32,
@@ -92,7 +104,7 @@ $TCA['tx_dynamicgooglesitemap_domain_model_sitemap'] = array(
 		),
 		'lang_key' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.url',
+			'label' => 'LLL:EXT:dynamicgooglesitemap/Resources/Private/Language/locallang_db.xlf:tx_dynamicgooglesitemap_domain_model_sitemap.lang_key',
 			'config' => array(
 				'type' => 'input',
 				'size' => 10,

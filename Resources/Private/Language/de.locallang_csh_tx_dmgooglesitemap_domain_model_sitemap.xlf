@@ -3,7 +3,6 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-30T12:00:00Z" product-name="dynamicgooglesitemap">
 		<header/>
 		<body>
-
 			<trans-unit id="for_page.description">
 				<source>The coresponding page ID</source>
 				<target>Die entsprechende Seite ID</target>
@@ -18,7 +17,7 @@
 			</trans-unit>
 			<trans-unit id="lastmod.description">
 				<source>Date when the content of the url was last changed.</source>
-				<target>Datum wenn die Seite zu lätzt gehändert wurde.</target>
+				<target>Letztes Änderungsdatum der Seite.</target>
 			</trans-unit>
 			<trans-unit id="lastmod_hash.description">
 				<source>Hash for monitoring changes of the page</source>

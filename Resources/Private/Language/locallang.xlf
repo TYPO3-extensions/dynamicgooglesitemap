@@ -3,7 +3,6 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T11:46:43Z" product-name="dynamicgooglesitemap">
 		<header/>
 		<body>
-
 			<trans-unit id="tx_dynamicgooglesitemap_domain_model_sitemap">
 				<source>Sitemap</source>
 			</trans-unit>
@@ -53,7 +52,9 @@
 			<trans-unit id="config.nosearch">
 				<source>Respect 'Include in Search' field from page properties</source>
 			</trans-unit>
-			
+			<trans-unit id="config.respectRequestPath">
+				<source>Respect request uri</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

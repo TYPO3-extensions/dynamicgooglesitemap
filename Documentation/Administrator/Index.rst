@@ -36,19 +36,31 @@ Configuration
 
 The main configuration is handled on the Extension Manager Configuration page of the extension.
 
-**Ignor Parameters** (``basic.ignorParams``)
-   
+**Ignore Parameters** (``basic.ignoreParams``)
+
    Since the extension identifies an entry by `pid`, `url params` and `language` it might be required to ignore some of the parameters. Parameters that are random or don't change the content of the page can be added here in a comma seperated list.
 
+**Ignore Page Type** (``basic.ignorePageType``)
+
+   Ignore pages of this type.
+
 **Sort Sitemap by Field** (``basic.sorting``)
-   
+
    Here you can choose how the sitemap should be sorted:
-   
+
 * ``UID`` : this is the uid of the page.
 * ``PageTitle`` : Alphabetical by page title.
 * ``URL`` : Alphabetical by URL.
 * ``LastChanged`` : Sort from newest to oldest changed page.
-   
+
+**Respect ``no_search``** (``basic.respectNoSearch``)
+
+   If set, ``no_search`` is respected for pages. Pages that should not be found in searches are not shown in the sitemap either.
+
+**Respect Reqest Path** (``basic.respectRequestPath``)
+
+   If set you can generate partial sitemaps by calling the eid on a particular page. Note that this will currently only work if you are using realurl or a comparable rewrite utility.
+
 .. important::
 
    If your site is multilingual: Make sure that your typoscript configuration is correct.
