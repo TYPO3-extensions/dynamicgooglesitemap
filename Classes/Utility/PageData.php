@@ -85,7 +85,7 @@ class PageData {
 
 		// Ignore non-standard pages or pages where a login is required.
 		// We don't want secured pages to appear on the sitemap.
-		if(empty($pageUid) || $doktype !== 1 || count($feAuth) < 1) {
+		if(empty($pageUid) || $doktype !== 1 || count($feAuth) > 0) {
 			return;
 		}
 		$lastChanged = intval($GLOBALS['TSFE']->page['SYS_LASTCHANGED']);
